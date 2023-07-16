@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const encrypt=  require('mongoose-encryption');
+// const encrypt=  require('mongoose-encryption');
 const itemSchema= new mongoose.Schema({
     email:{
         type: String,
@@ -10,13 +10,13 @@ const itemSchema= new mongoose.Schema({
         type: String,
         required: true
     }});
-itemSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: ['password'] });
+// itemSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: ['password'] });
 
 let Item=new mongoose.model('User',itemSchema);
 exports.connect= async (url)=>{
    await mongoose.connect(url);
 }
-exports.insert= async (item, collectionName)=>{
+exports.insert= async (item)=>{
    const newitem = new Item (item);
    await newitem.save();
 }
