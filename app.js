@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express= require('express');
 const bodyParser= require('body-parser');
 const ejs=require('ejs');
@@ -16,9 +17,9 @@ app.get('/login',(req,res)=>{
 });
 app.post('/login',(req,res)=>{
     (async()=>{
-        const user=await DB.find({email:req.body.username, password: req.body.password});
+        const user=await DB.find({email:req.body.username});
         // console.log(user);
-        if (user.length) res.render('secrets');
+        if (user[0].password==req.body.password) res.render('secrets');
     })();
 });
 app.get('/register',(req,res)=>{
