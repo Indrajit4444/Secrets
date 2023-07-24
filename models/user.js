@@ -7,7 +7,9 @@ const userSchema = new mongoose.Schema({
   //   unique: true,
   //   required: true
   // },
-  password: String
+  password: String,
+  googleID: String,
+  secret: String
 });
 userSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model("User", userSchema);
